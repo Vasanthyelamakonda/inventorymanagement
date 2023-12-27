@@ -1,0 +1,93 @@
+{% load static %}
+{% block content %}
+    <div class="row" style="color: #4e4e4e; font-style: bold; font-size: 3rem; ">
+        <div class="col-md-8">Inventory List</div>
+        <div class="col-md-4">               
+            <div style="float:right;"> <a class="btn btn-success" href="{% url 'addstock' %}">Add New Stock</a> </div>
+        </div>
+    </div>
+    
+    <div style="border-bottom: 1px solid white;"></div>
+    
+    <br>
+
+    <table class="table table-css table-bordered table-hover">
+
+        <form method="get">
+            <div class="input-group search">
+               
+                <div class="input-group-append">
+                   <button type="submit" class="btn btn-pink"> Search </button>
+                </div>
+            </div>
+        </form>
+
+        <br>
+        
+        <thead class="thead-dark align-middle">
+            <tr>
+                <th width="10%">Brand Number</th>
+                <th width="15%">Brand name</th>
+&nbsp;                <th>Size</th>
+&nbsp;  
+                <th width="15%">Quantity boxes</th>
+                &nbsp;
+                <th width="15%">Quantity cases</th>&nbsp;  
+                <th width="15%">Actions</th>&nbsp;  
+            </tr>
+        </thead>
+                  
+{% if object_list %}
+
+        <tbody>     
+            {% for wqarehouse in object_list %}
+                <tr>
+                    <td>
+                        <p>{{ warehouse.brand_no }}</p>
+                    </td>
+                    <td class="align-middle">{{ warehouse.quantity }}</td>
+                    <td class="align-middle">
+                        <a href="{% url 'editstock' stock.pk %}" class="btn btn-info btn-sm">Edit Details</a>
+                        
+                    </td>          
+                </tr>
+            {% endfor %}                   
+        </tbody>
+
+    </table>  
+
+    <div class="align-middle">
+        {% if is_paginated %}
+
+            {% if page_obj.has_previous %}
+                <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+
+        {% endif %}
+    </div>
+
+{% else %}
+
+        <tbody></tbody>   
+    </table>
+
+    <br><br><br><br><br><br><br><br>
+    <div style="color: #575757; font-style: bold; font-size: 1.5rem; text-align: center;">The records are empty. Please try adding some.</div>
+
+{% endif %}
+
+{% endblock content %}

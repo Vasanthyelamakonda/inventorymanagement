@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Dashboard</title>
+    <!-- ================= Favicon ================== -->
+    <!-- Standard -->
+    <!-- Retina iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="144x144" href="http://placehold.it/144.png/000/fff">
+    <!-- Retina iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="114x114" href="http://placehold.it/114.png/000/fff">
+    <!-- Standard iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
+    <!-- Standard iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
+    <!-- Styles -->
+
+    <link href="{% static 'assets/css/lib/font-awesome.min.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/css/lib/themify-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/lib/owl.carousel.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/lib/owl.theme.default.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/lib/menubar/sidebar.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/lib/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/lib/helper.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <style>
+        /* Add animation to the form */
+        .form-group {
+            animation: slide-in 0.5s ease-out;
+        }
+
+        @keyframes slide-in {
+            from {
+                transform: translateX(-50%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        /* Add a background color to the form container */
+        form {
+            background-color: transparent;
+            padding: 47px;
+            margin: 0 0px;
+            max-width: 700px;
+        }
+
+        /* Add background color to the input fields and select boxes */
+        input,
+        select {
+            background-color: #fff;
+        }
+
+        /* Add background color to the submit button */
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        /* Change the background color of the submit button on hover */
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Use the flexbox layout to align the form elements in a row */
+        form {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* Set the width of each form element to 50% */
+        .form-group {
+            width: 120%;
+            padding: 0 10px;
+        }
+
+        /* Make the submit button full width */
+        button[type="submit"] {
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+
+        /* Make required * red */
+        .required {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+        <div class="nano">
+            <div class="nano-content">
+                <ul>
+                    <div class="logo">
+                       
+                            <span>Sri Sai Thirumala Wines</span>
+                        </a>
+                    </div>
+                    <li class="label"></li>
+                    <li><a href="{% url 'dailysheetadmin' %}" class="sideba"><i class="ti-home"></i> Daily Sheet</a></li>
+                    <li><a href="{% url 'stockmanagementadmin' %}" class="sideba"><i class="ti-home"></i> Stock
+                            Management</a></li>
+                    <li><a href="{% url 'regemp' %}" class="sideba"><i class="ti-home"></i> Employee Registration </a></li>
+                    <li><a href="{% url 'regacc' %}" class="sideba"><i class="ti-home"></i> Accountant Registration </a></li>
+                    <li><a href="{% url 'brandsandpriceadmin' %}"><i class="ti-calendar"></i> Brands & Price List </a></li>
+                    <li><a href="{% url 'challanandbills' %}"><i class="ti-email"></i> Challan & Bills</a></li>
+                    <li><a href="{% url 'others' %}"><i class="ti-email"></i> Others</a></li>
+
+
+                    <li><a href="{% url 'adminlogout' %}"><i class="ti-close"></i> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="float-left">
+                        <div class="hamburger sidebar-toggle">
+                            <span class="line"></span>
+                            <span class="line"></span>
+                            <span class="line"></span>
+                        </div>
+                    </div>
+
+                    <div>
+
+                    </div>
+                    <div class="dropdown dib">
+                        <div class="header-icon" data-toggle="dropdown">
+                            <span class="user-avatar">Krishna Yelamakonda
+                                <i class="ti-angle-down f-s-10"></i>
+                            </span>
+                            <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-right">
+
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ti-power-off"></i>
+                                                <span>Logout</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                        <form id="editbrands" name="editbrands"  method="post">
+                          {%csrf_token%}
+                          {% for x in brand %}
+                            <div class="form-group">
+                                <label for="brandnumber">Brand number</label>
+                                <input type="number" class="form-control" id="brandnumber" name="brandnumber" value="{{x.brand_no}}" readonly="readonly"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="brandname">Brand name</label>
+                                <input type="text" class="form-control" id="brandname" name= "brandname" value="{{x.brand_name}}"  readonly="readonly"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="ml">ML</label>
+                                <input type="number" class="form-control" id="ml" name= "ML" value="{{x.ML}}" >
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Issue Price</label>
+                                <input type="number" class="form-control" id="price" name= "issue_price" value="{{x.issue_price}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="mrp in cases">MRP</label>
+                                <input type="number" class="form-control" id="mrp" name= "MRP" value="{{x.MRP}}">
+                            </div>
+                            {% endfor %} 
+                            <input type="submit"  name="Update" class="btn btn-success" style="width: 100%; margin-top: 20px; margin-bottom: 20px;"></input>
+                            <br />
+                            
+                    
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

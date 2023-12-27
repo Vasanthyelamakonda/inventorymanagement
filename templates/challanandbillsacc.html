@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bills</title>
+    <!-- ================= Favicon ================== -->
+    <!-- Standard -->
+    <!-- Retina iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="144x144" href="http://placehold.it/144.png/000/fff">
+    <!-- Retina iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="114x114" href="http://placehold.it/114.png/000/fff">
+    <!-- Standard iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
+    <!-- Standard iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
+    <!-- Styles -->
+
+    <link href="{% static 'assets/css/lib/font-awesome.min.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/css/lib/themify-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/lib/owl.carousel.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/lib/owl.theme.default.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/lib/menubar/sidebar.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/lib/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/lib/helper.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+        <div class="nano">
+            <div class="nano-content">
+                <ul>
+                    <div class="logo">
+                       
+                            <span>Sri Sai Thirumala Wines</span>
+                        </a>
+                    </div>
+                    <li class="label"></li>
+                    <li><a href="{% url 'dailysheetacc' %}" class="sideba"><i class="ti-home"></i> Daily Sheet</a>
+                    </li>
+                 
+                    <li><a href="{% url 'challanandbillsacc' %}"><i class="ti-email"></i> Challan & Bills</a></li>
+                   
+
+
+                    <li><a href="{% url 'acclogout' %}"><i class="ti-close"></i> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="float-left">
+                        <div class="hamburger sidebar-toggle">
+                            <span class="line"></span>
+                            <span class="line"></span>
+                            <span class="line"></span>
+                        </div>
+                    </div>
+
+                    <div>
+
+                    </div>
+                    <div class="dropdown dib">
+                        <div class="header-icon" data-toggle="dropdown">
+                            
+                            <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-right">
+
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ti-power-off"></i>
+                                                <span>Logout</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        
+                                        <form method="post">
+                                            {%csrf_token%}
+                                            <table border="2">
+                                                {%for x in files %}
+                                                <tr>
+                                                    <td>
+                                                        {{x.date}}
+                                                    </td>
+                                                    <td>
+                                                        <a target="_blank" href="media/{{x.bill}}">{{x.bill}}</a>
+                                                    </td>
+                                                </tr>
+                                                {%endfor%}
+                                            </table>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>

@@ -1,0 +1,333 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Employee Registration</title>
+    <!-- ================= Favicon ================== -->
+    <!-- Standard -->
+    <!-- Retina iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="144x144" href="http://placehold.it/144.png/000/fff">
+    <!-- Retina iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="114x114" href="http://placehold.it/114.png/000/fff">
+    <!-- Standard iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
+    <!-- Standard iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
+    <!-- Styles -->
+
+    <link href="{% static 'assets/css/lib/font-awesome.min.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/css/lib/themify-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/lib/owl.carousel.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/lib/owl.theme.default.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/lib/menubar/sidebar.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/lib/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/lib/helper.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
+    type="text/javascript"></script>
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+    rel="Stylesheet" type="text/css" />
+    <style>
+        /* Add animation to the form */
+        .form-group {
+            animation: slide-in 0.5s ease-out;
+        }
+
+        @keyframes slide-in {
+            from {
+                transform: translateX(-50%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        /* Add a background color to the form container */
+        form {
+            background-color: transparent;
+            padding: 47px;
+            margin: 0 0px;
+            max-width: 700px;
+        }
+
+        /* Add background color to the input fields and select boxes */
+        input,
+        select {
+            background-color: #fff;
+        }
+
+        /* Add background color to the submit button */
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        /* Change the background color of the submit button on hover */
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Use the flexbox layout to align the form elements in a row */
+        form {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* Set the width of each form element to 50% */
+        .form-group {
+            width: 120%;
+            padding: 0 10px;
+        }
+
+        /* Make the submit button full width */
+        button[type="submit"] {
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+
+        /* Make required * red */
+        .required {
+            color: red;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+        <div class="nano">
+            <div class="nano-content">
+                <ul>
+                    <div class="logo">
+                      
+                            <span>Sri Sai Thirumala Wines</span>
+                        </a>
+                    </div>
+                    <li class="label"></li>
+                    <li><a href="{% url 'dailysheetadmin' %}" class="sideba"><i class="ti-home"></i> Daily Sheet</a></li>
+                    <li><a href="{% url 'stockmanagementadmin' %}" class="sideba"><i class="ti-home"></i> Stock
+                            Management</a></li>
+                    <li><a href="{% url 'regemp' %}" class="sideba"><i class="ti-home"></i> Employee Registration </a></li>
+                    <li><a href="{% url 'regacc' %}" class="sideba"><i class="ti-home"></i> Accountant Registration </a></li>
+                    <li><a href="{% url 'brandsandpriceadmin' %}"><i class="ti-calendar"></i> Brands & Price List </a></li>
+                    <li><a href="{% url 'challanandbills' %}"><i class="ti-email"></i> Challan & Bills</a></li>
+                    <li><a href="{% url 'others' %}"><i class="ti-email"></i> Others</a></li>
+
+
+                    <li><a href="{% url 'adminlogout' %}"><i class="ti-close"></i> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="float-left">
+                        <div class="hamburger sidebar-toggle">
+                            <span class="line"></span>
+                            <span class="line"></span>
+                            <span class="line"></span>
+                        </div>
+                    </div>
+
+                    <div>
+
+                    </div>
+                    <div class="dropdown dib">
+                        <div class="header-icon" data-toggle="dropdown">
+                            <span class="user-avatar">Krishna Yelamakonda
+                                <i class="ti-angle-down f-s-10"></i>
+                            </span>
+                            <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-right">
+
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ti-power-off"></i>
+                                                <span>Logout</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form id="regemp" name="regemp"  method="post"  onsubmit="return validate()"  >
+                        {%csrf_token%}
+                          <div class="form-group">
+                              <label for="username">Username<span class="required">*</span></label>
+                              <input type="text" class="form-control" id="username" name="username" >
+                          </div>
+                          <div class="form-group">
+                            <label for="password">Password<span class="required">*</span></label>
+                            <input type="password" class="form-control" id="password" name= "password">
+                        </div>
+                          <div class="form-group">
+                              <label for="cpassword"> Confirm Password<span class="required">*</span></label>
+                              <input type="password" class="form-control" id="cpassword" name= "cpassword">
+                          </div>
+                          <div class="form-group">
+                              <label for="email"> Email<span class="required">*</span></label>
+                              <input type="email" class="form-control" id="email" name= "email">
+                          </div>
+                          <div class="form-group">
+                              <label for="mobile">Mobile<span class="required">*</span></label>
+                              <input type="number" class="form-control" id="mobile" name= "mobile">
+                          </div>
+                          <div> 
+                          <label for="dob">Date of birth<span class="required">*</span></label>
+                            <input type="text" id="dob" name="dob" readonly="readonly" />
+                            <br />
+                            </div>
+                            <script type="text/javascript">
+                                $(function () {
+                                    $("#dob").datepicker({
+                                        changeMonth: true,
+                                        changeYear: true,
+                                        showOn: 'button',
+                
+                                        dateFormat: 'dd/mm/yy',
+                                        yearRange: '1900:+0',
+                                        onSelect: function (dateString, dob) {
+                                            ValidateDOB(dateString);
+                                        }
+                                    });
+                                });
+                                function ValidateDOB(dateString) {
+                                    var lblError = $("#lblError");
+                                    var parts = dateString.split("/");
+                                    var dtDOB = new Date(parts[1] + "/" + parts[0] + "/" + parts[2]);
+                                    var dtCurrent = new Date();
+                                    lblError.html("Eligibility 21 years ONLY.")
+                                    if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 21) {
+                                        return false;
+                                    }
+                             
+                                    if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 21) {
+                             
+                                        //CD: 11/06/2018 and DB: 15/07/2000. Will turned 18 on 15/07/2018.
+                                        if (dtCurrent.getMonth() < dtDOB.getMonth()) {
+                                            return false;
+                                        }
+                                        if (dtCurrent.getMonth() == dtDOB.getMonth()) {
+                                            //CD: 11/06/2018 and DB: 15/06/2000. Will turned 18 on 15/06/2018.
+                                            if (dtCurrent.getDate() < dtDOB.getDate()) {
+                                                return false;
+                                            }
+                                        }
+                                    }
+                                    lblError.html("");
+                                    return true;
+                                }
+                            </script>
+                            <span id="lblError" style = "color:Red"></span>
+                          <input type="submit" value= "Register" name="Add" class="btn btn-success" style="width: 100%; margin-top: 20px; margin-bottom: 20px;"></input>
+                          <br />
+                         
+                      </form>
+                 
+                    <script>
+                        function validate(){
+                          
+                          var username = document.regemp.username.value.trim();   
+                          var email = document.regemp.email.value.trim();
+                          var password = document.regemp.password.value.trim();
+                          var cpassword = document.regemp.cpassword.value.trim();
+                          var dob = document.regemp.dob.value.trim();
+                          var mobile = document.regemp.mobile.value.trim();
+                        
+                        
+                          // Validate email
+                          
+                          if (email == '') {
+                            alert('Email is required');
+                            return false;
+                          }
+                          else if (!validateEmail(email)) {
+                            alert('Please enter a valid email address');
+                            return false;
+                          }
+                            // Validate mobile
+                          
+                            if (mobile == '') {
+                            alert('mobile number is required');
+                            return false;
+                          }
+                          else if (!validateMobile(mobile)) {
+                            alert('Please enter a valid mobile number');
+                            return false;
+                          }
+                          // validate dob
+                          if (dob == '') {
+                            alert('dob is required');
+                            return false;
+                          }
+                          else if (!ValidateDOB(dateString)) {
+                            alert('Please enter a valid date of birth');
+                            return false;
+                          }
+                        
+                          // Validate password
+                          
+                          if (password == '') {
+                            alert('Password is required');
+                            return false;
+                          }
+                          else if (password.length<8) {
+                            alert('Password should be atleast 8 characters long');
+                            return false;
+                          }
+                        
+                          // Validate confirm password
+                          
+                           if (cpassword == '') {
+                            alert('Confirm password is required');
+                            return false;
+                          }
+                          else if (password != password) {
+                            alert('Passwords do not match');
+                            return false;
+                          }
+                         
+                          // Submit form if all validation passes
+                         return true;
+                        }
+                        
+                        // Email validation function
+                        function validateEmail(email) {
+                          var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                          return re.test(email);
+                        }
+                        
+                        // Mobile validation function
+                        function validateMobile(mobile){
+                
+                          var re=/^[6-9]\d{9}$/;
+                          return re.test(mobile);
+                        }
+      
+   
+                            </script>      
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+    </head>
+    <body>
+        {% for instance in queryset %}
+        {{instance.item_name}} {{instance.quantity}}<br>
+        {% endfor %}  
+    </body>
+</html>

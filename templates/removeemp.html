@@ -1,0 +1,8 @@
+{% block content %} 
+<p>
+    Are you sure you want to delete "{{username}}"
+</p>
+<form method="POST">
+    <a href="{% url 'others' %}"> Cancel</a>
+    <input type="submit" name="confirm">
+</form>
